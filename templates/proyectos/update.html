@@ -1,0 +1,69 @@
+<!--register.html-->
+{% extends 'home.html' %}
+
+{% block content %}
+
+
+<section>
+    <h2>
+        <a href="{{ url_for('admin.usuario') }}" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Actualizar Información de Proyecto
+        <hr>
+    </h2>
+
+    {% if (dataInfo) %}
+      <form action="{{ url_for('formActualizarProyecto', idProyecto = dataInfo.id_proyecto  ) }}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="text" class="form-control" name="id_proyecto" value="{{ dataInfo.id_proyecto }}" required hidden>
+        
+        <div class="row">
+            <div class="row">
+                <div class="col">
+                    <label for="Nombre_proyecto">Nombre</label>
+                    <input type="text" value="{{ dataInfo.Nombre_proyecto }}" name="Nombre_proyecto" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="Descripcion_proyecto">Descripcion</label>
+                    <input type="text" value="{{ dataInfo.Descripcion_proyecto }}" name="Descripcion_proyecto"  class="form-control" required>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="Fecha_inicio">Fecha Inicio</label>
+                    <input type="date" value="{{ dataInfo.Fecha_inicio }}" name="Fecha_inicio"  class="form-control" required>
+                </div>
+                
+            </div>
+            <div class="col">
+                <label for="id_cliente">Id Cliente</label>
+                <select name = "id_cliente"  value="{{ dataInfo.id_cliente }}" class="form-control">
+                    <option value="1" >IDS Solutions</option>
+                    <option value="2" >GNP Seguros	</option>
+                    
+                  </select>
+            </div>
+            <div class="col">
+                <label for="id_team">Id Team</label>
+                <select name = "id_team" value="{{ dataInfo.id_team }}" class="form-control">
+                    <option value="1" >WARRIOR</option>
+                    <option value="2" >Golden</option>
+                  </select>
+            </div>
+            </div>
+        </div>
+        <hr>
+        <input class="button-primary mt-3 btn btn-info btn-block bold" type="submit" value="Guardar Actualización">
+    </form>
+
+      {% else %}
+      <div class="col-12">
+          <h2 class="text-center">
+              No existe el Usuario
+          </h2>
+      </div>
+{% endif %}
+
+</section>
+
+{% endblock %}

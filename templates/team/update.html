@@ -1,0 +1,49 @@
+<!--register.html-->
+{% extends 'home.html' %}
+
+{% block content %}
+
+
+<section>
+    <h2>
+        <a href="{{ url_for('admin.equipo') }}" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Actualizar Información de Equipo
+        <hr>
+    </h2>
+
+    {% if (dataInfo) %}
+      <form action="{{ url_for('formActualizarTeam', idTeam = dataInfo.id_team ) }}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="text" class="form-control" name="id" value="{{ dataInfo.id_team}}" required hidden>
+        
+
+        <div class="row">
+            <div class="row">
+                <div class="col">
+                    <label for="Nombre">Nombre</label>
+                    <input type="text" value="{{ dataInfo.Nombre }}" name="Nombre" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="Descripcion">Descripcion</label>
+                    <input type="text" value="{{ dataInfo.Descripcion }}" name="Descripcion"  class="form-control" required>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <hr>
+        <input class="button-primary mt-3 btn btn-info btn-block bold" type="submit" value="Guardar Actualización">
+    </form>
+
+      {% else %}
+      <div class="col-12">
+          <h2 class="text-center">
+              No existe el Usuario
+          </h2>
+      </div>
+{% endif %}
+
+</section>
+
+{% endblock %}

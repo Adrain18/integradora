@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+    
+    <div class="section-title">
+        <h2>Proyectos</h2>
+      </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+          <a href="{{ url_for('addProyecto') }}" title="Registrar nuevo Usuario"
+            class="btn btn-primary btn-lg btn-block btn-sm mb-2" style="float:right">
+            <i class="bi bi-person-fill"></i>
+            Nuevo Registro
+          </a>
+        </div>
+      </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre_proyecto</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha_inicio</th>
+                    <th scope="col">Cliente </th>
+                    <th scope="col">Team </th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proyecto in miData %}
+                <tr id="Registro_{{ proyecto.id }}">
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ proyecto.Nombre_proyecto }}</td>
+                    <td>{{ proyecto.Descripcion_proyecto }}</td>
+                    <td>{{ proyecto.Fecha_inicio }}</td>
+                    <td>{{ proyecto.id_cliente }}</td>
+                    <td>{{ proyecto.id_team }}
+                    <td width="300">
+                        <span style="display: flex; justify-content:space-between;">
+                            <a href="{{ url_for('formViewUpdateProyecto', id = proyecto.id_proyecto ) }}" class="btn btn-info btn-sm"
+                                tooltip="Actualizar Registro">
+                                <i class="bi bi-arrow-clockwise"></i>
+                                Actualizar
+                            </a>
+                            <a href="{{ url_for('formViewBorrarProyecto', id = proyecto.id_proyecto ) }}" class="btn btn-danger btn-sm"
+                                tooltip="Eliminar Registro">
+                                <i class="bi bi-trash3"></i>
+                                Eliminar
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</section>
+{% endblock %}

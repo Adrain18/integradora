@@ -1,0 +1,95 @@
+<!--register.html-->
+{% extends 'home.html' %}
+
+{% block content %}
+
+
+<section>
+    <h2>
+        <a href="{{ url_for('admin.usuario') }}" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Actualizar Información de Usuario
+        <hr>
+    </h2>
+
+    {% if (dataInfo) %}
+      <form action="{{ url_for('formActualizarUser', idUser = dataInfo.id ) }}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="text" class="form-control" name="id" value="{{ dataInfo.id }}" required hidden>
+        
+        <div class="row">
+            <div class="row">
+                <div class="col">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" value="{{ dataInfo.username }}" class="form-control">
+                </div>
+                <div hidden=true class="col">
+                    <label hidden=true for="password">Contraseña</label>
+                    <input type="text" hidden=true name="password" value="{{ dataInfo.password }}"  class="form-control">
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="Nombre">Nombre</label>
+                    <input type="text" name="Nombre" value="{{ dataInfo.Nombre }}"  class="form-control">
+                </div>
+                <div class="col">
+                    <label for="Ape_pat">Apellido Paterno</label>
+                    <input type="text" name="Ape_pat" value="{{ dataInfo.Ape_pat }}"  class="form-control">
+                </div>
+                <div class="col">
+                    <label for="Ape_mat">Apellido Materno</label>
+                    <input type="text" name="Ape_mat"  value="{{ dataInfo.Ape_mat }}"  class="form-control">
+                </div>
+                <div class="col">
+                    <label for="Edad">Edad</label>
+                    <input type="text" name="Edad" value="{{ dataInfo.Edad }}"   class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="GdoEstudios">Grado de Estudios</label>
+                    <input type="text" name="GdoEstudios" value="{{ dataInfo.GdoEstudios }}"  class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="Direccion">Direccion</label>
+                    <input type="text" name="Direccion" value="{{ dataInfo.Direccion }}"  class="form-control">
+                </div>
+                <div class="col">
+                    <label for="Municipio">Municipio</label>
+                    <input type="text" name="Municipio" value="{{ dataInfo.Municipio }}"  class="form-control">
+                </div>
+                <div class="col">
+                    <label for="Estado">Estado</label>
+                    <input type="text" name="Estado" value="{{ dataInfo.Estado }}"  class="form-control">
+                </div>
+                <div class="col">
+                    <label for="Telefono">Telefono</label>
+                    <input type="text" name="Telefono" value="{{ dataInfo.Telefono }}"   class="form-control">
+                </div>
+                <div class="col">
+                    <label for="id_team">Equipo</label>
+                    <select name = "id_team" value="{{ dataInfo.id_team }}" class="form-control">
+                        <option value="1" >Venom</option>
+                        <option value="2" >Golden Warriors</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <input class="button-primary mt-3 btn btn-info btn-block bold" type="submit" value="Guardar Actualización">
+    </form>
+
+      {% else %}
+      <div class="col-12">
+          <h2 class="text-center">
+              No existe el Usuario
+          </h2>
+      </div>
+{% endif %}
+
+</section>
+
+{% endblock %}

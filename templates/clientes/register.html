@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<section>
+    <h2>
+        <a href="{{ url_for('admin.clientes') }}" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Registrar Nuevo Cliente
+        <hr>
+    </h2>
+
+    <form action="{{ url_for('formAddCliente') }}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="row">
+            <div class="row">
+                <div class="col">
+                    <label for="Nombre_cliente">Nombre</label>
+                    <input type="text" name="Nombre_cliente" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="Descripcion">Descripcion</label>
+                    <input type="text" name="Descripcion"  class="form-control" required>
+                </div>
+                
+            </div>
+        </div>
+        <hr>
+
+        <input class="button-primary mt-3 btn btn-info btn-block bold" type="submit" value="Guardar Registro">
+    </form>
+</section>
+    {% endblock %}
